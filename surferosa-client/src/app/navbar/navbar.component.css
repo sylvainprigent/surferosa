@@ -1,0 +1,11 @@
+.sr-avatar-img{
+    border-radius: 12px 12px 12px 12px;
+}
+
+.sr-search-bar{
+    min-width: 300px;
+}
+
+.sr-nav-bar{
+    height: 35px;
+}

@@ -1,0 +1,74 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark sr-navbar">
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="container">
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+
+      <div class="navbar-nav mr-auto py-0">
+        <a class="navbar-brand py-0" routerLink="/newsfeed">
+          <img src="assets/brand/small.png" width="20" height="20" alt="SR">
+        </a>
+
+
+        <div class="input-group input-group-sm">
+          <input type="text" class="form-control sr-search-bar" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-default" type="button">
+              <fa [name]="'search'"></fa>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+
+      <ul class="navbar-nav mr-auto py-0">
+        <li class="nav-item py-0" [routerLinkActive]="['active']">
+          <a class="nav-link py-0" routerLink="/newsfeed">
+            <fa [name]="'home'" [size]=1></fa>
+            <small> Home</small>
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item py-0"  [routerLinkActive]="['active']">
+          <a class="nav-link py-0" routerLink="/network">
+            <fa [name]="'user'" [size]=1></fa>
+            <small> Network</small>
+          </a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link py-0" routerLink="/chat">
+            <fa [name]="'comment'" [size]=1></fa>
+            <small> Messages</small>
+          </a>
+        </li>
+        <li class="nav-item"  [routerLinkActive]="['active']">
+          <a class="nav-link py-0" routerLink="/notifications">
+            <fa [name]="'bell'" [size]=1></fa>
+            <small> Notification</small>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav  py-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle py-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <img class="sr-avatar-img" src="assets/brand/moi.jpg" width="25" height="25" alt="avatar">
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">my accout</a>
+            <a class="dropdown-item" href="#">settings</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>

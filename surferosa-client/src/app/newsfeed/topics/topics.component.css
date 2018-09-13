@@ -1,0 +1,19 @@
+.sr-topics-bar{
+    margin-top: 20px;
+    background-color: #ffffff;
+    padding-top: 12px;
+    padding-left: 12px;
+    padding-bottom: 12px;
+}
+
+.sr-topic-link{
+    font-weight: bold;
+}
+
+.sr-topics-bar-title{
+    margin-top: 25px;
+    margin-left: -12px;
+    text-transform: uppercase;
+    color: #555555;
+    font-size: 16px;
+}

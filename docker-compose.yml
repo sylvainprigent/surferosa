@@ -1,0 +1,41 @@
+version: "3.5"
+
+services:
+  surferosa-client:
+    container_name: surferosa-client
+    build:
+      context: ./surferosa-client
+      dockerfile: Dockerfile
+    environment:
+      - API_URI="surferosa-api:8081"
+    volumes:
+      - './surferosa-client:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - 4200:4200
+    links:
+      - surferosa-api
+  surferosa-api:
+    container_name: "surferosa-api"
+    restart: always
+    build: ./surferosa-api
+    ports:
+      - 8081:80
+    volumes:
+      - ./surferosa-api:/app
+    environment:
+      - MONGO_URI="surferosa-database:27017/surferosatest"
+      - JWT_SECRET_KEY="1dgaz85dvla96vkopsuahnsmpco52d4f9v"
+    links:
+      - surferosa-database
+
+  surferosa-database:
+    image: mongo:3.0.2
+    container_name: "surferosa-database"
+    environment:
+      - MONGO_DATA_DIR=/usr/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./surferosa-database/db:/usr/data/db
+    ports:
+      - 27017:27017

@@ -1,0 +1,39 @@
+.sr-toolshed-bar{
+    margin-top: 20px;
+    background-color: #ffffff;
+    padding-left: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.sr-toolshed-bar-button{
+    padding-left: 10px;
+    background: #fff;
+    border: none;
+    text-align: left;
+    /* color: #93a3b5; */
+    color: #333333;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 4px 4px 4px 4px;
+    border: 1px solid #ffffff;
+}
+
+.sr-toolshed-bar-button:hover{
+    width: 100%;
+    background: #f1f1f1;
+    color: #111111;
+    border: 1px solid #e1e1e1;
+    text-align: left;
+    cursor: pointer;
+
+}
+
+.sr-toolshed-bar-title{
+    margin-top: 25px;
+    
+    text-transform: uppercase;
+    color: #555555;
+    font-size: 16px;
+}
+ 
