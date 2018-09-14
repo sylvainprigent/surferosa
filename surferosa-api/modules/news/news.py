@@ -6,7 +6,6 @@ import json
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from bson.objectid import ObjectId
 import datetime
-from modules.auth.JwtServices import JwtServices
 
 
 # parser
@@ -28,7 +27,7 @@ class NewsCollection(Resource):
         output = []
         for d in data.find():
             output.append({"_id": str(d["_id"]),
-                           "username": d["username"],
+                           "author": d["username"],
                            "content": d["content"],
                            "created": str(d["created"]),
                            "modified": str(d["modified"]),
@@ -48,8 +47,8 @@ class NewsCollection(Resource):
                                                      "modified": datetime.datetime.utcnow()
                                                  }).inserted_id
 
-        output = {"message": "user added", "id": str(news_id), "data": json_input};
-        return output, 201
+        output = {"message": "user added", "id": str(news_id), "data": json_input}
+        return json_input, 201
 
 
 class News(Resource):
@@ -57,7 +56,7 @@ class News(Resource):
     def get(self, id):
         data = mongo.db.news.find_one({'_id': ObjectId(id)})
         if data:
-            return JwtServices.tokenify({'_id': str(data["_id"]),
+            return ({'_id': str(data["_id"]),
                     'username': data["username"],
                     'content': data["content"],
                     "created": str(data["created"]),

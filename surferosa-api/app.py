@@ -1,15 +1,15 @@
 from flask import Flask
 from database import mongo
 from modules.auth.jwt import jwt
+from flask_cors import CORS
 
 # app
 app = Flask(__name__)
+cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 app.config.from_object("config")
 
 # database
 mongo.init_app(app)
-# mongo.db.users.remove()
-# mongo.db.users.insert_one({'username': "pbismut", 'name': "Bismut", 'firstname': "Paul", "email": "paul.bismut@mail.com"})
 
 # jwt auth
 jwt.init_app(app)

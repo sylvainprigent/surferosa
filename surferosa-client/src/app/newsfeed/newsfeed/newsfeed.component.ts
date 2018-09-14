@@ -22,4 +22,13 @@ export class NewsfeedComponent implements OnInit {
         .subscribe(newslist => this.newslist = newslist);
   }
 
+  addNews(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.newsService.addNews({ "content": name } as News)
+      .subscribe(news => {
+        this.newslist.push(news);
+      });
+  }
+
 }

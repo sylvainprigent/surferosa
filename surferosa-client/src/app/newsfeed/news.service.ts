@@ -4,19 +4,18 @@ import { News } from './news';
 import { MessagesService } from '../messages/messages.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
-export const NEWS: News[] = [
-  { id: '1', author: 'Sylvain Prigent', content: 'This is my first post' },
-  { id: '2', author: 'Meriadec Prigent', content: 'This is my second post' },
-  { id: '3', author: 'Paul Bismut', content: 'This is paul s post' },
-];
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewsService {
 
-  private newsUrl = ':8081/api/v1/news/';
+  private newsUrl = environment.baseUrl + '/api/v1/news/';
  
   constructor(
     private http: HttpClient,
@@ -25,10 +24,21 @@ export class NewsService {
   getNews(): Observable<News[]> {
     return this.http.get<News[]>(this.newsUrl)
       .pipe(
-        tap(heroes => this.log('fetched news')),
+        tap(news => this.log('fetched news')),
         catchError(this.handleError('getNews', []))
       );
   }
+
+  addNews (news: News): Observable<News> {
+    return this.http.post<News>(this.newsUrl, news, httpOptions).pipe(
+      tap((news: News) => this.log(`added news w/ id=${news.id}`)),
+      catchError(this.handleError<News>('addHero'))
+    );
+  }
+
+  /**         
+   * 
+   */
 
   private log(message: string) {
     this.messagesService.add(`NewsService: ${message}`);

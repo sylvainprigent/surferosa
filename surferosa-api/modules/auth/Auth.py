@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from flask import request, jsonify
-from flask_jwt_extended import  create_access_token
+from flask_jwt_extended import  create_access_token, create_refresh_token
 from passlib.hash import pbkdf2_sha256
 from database import mongo
 
@@ -20,8 +20,12 @@ class Auth(Resource):
         user = mongo.db.users.find_one({"username": username})
         if user:
             if pbkdf2_sha256.verify(password, user["password"]):
-                access_token = create_access_token(identity=username)
-                return access_token, 200
+                data = {
+                    "username": username,
+                    'access_token': create_access_token(identity=username),
+                    'refresh_token': create_refresh_token(identity=username)
+                }
+                return data, 200
             else:
                 return {"msg": "Password incorrect"}, 400
         else:

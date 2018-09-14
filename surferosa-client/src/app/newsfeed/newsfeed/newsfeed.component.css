@@ -1,3 +1,15 @@
 .sr-newsfeed{
     margin-top: 20px;
 }
+
+.sr-add-news-form{
+    background-color: #ffffff;
+    margin-bottom: 7px;
+    padding: 5px 5px 5px 5px;
+    border-right: 15px solid #e7ecf0;
+    border-left: 15px solid #e7ecf0;
+}
+
+.sr-add-news-form-input{
+    margin-bottom: 3px;
+}

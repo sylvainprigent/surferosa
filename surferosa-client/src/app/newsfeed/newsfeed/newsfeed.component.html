@@ -1,5 +1,19 @@
 <div class="row sr-newsfeed">
+
+  <div class="col col-12 sr-add-news-form">
+    <div class="col col-12 sr-add-news-form-input">
+      <input type="text" class="form-control" placeholder="Write a news" #newsContent />
+    </div>
+
+    <div class="col col-12">
+      <button class="btn btn-sm btn-primary float-right" (click)="addNews(newsContent.value); newsContent.value=''">
+        Publish
+      </button>
+    </div>
+  </div>
+
   <div class="col col-12">
     <app-news *ngFor="let news of newslist" author={{news.author}} content={{news.content}} media="https://www.youtube.com/embed/6vT_7AX06UQ"></app-news>
   </div>
+
 </div>

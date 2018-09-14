@@ -3,8 +3,10 @@ import { NgModule } from '@angular/core';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { FormsModule }   from '@angular/forms';
 
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
+import { TokenInterceptor} from './auth/token.interceptor';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -15,7 +17,8 @@ import { NewspageComponent } from './newsfeed/newspage/newspage.component';
 import { ToolshedBarComponent } from './toolshed/toolshed-bar/toolshed-bar.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { ChatComponent } from './chat/chat/chat.component'
+import { ChatComponent } from './chat/chat/chat.component';
+import { LoginComponent } from './auth/login/login.component'
 
 @NgModule({
   declarations: [
@@ -27,16 +30,24 @@ import { ChatComponent } from './chat/chat/chat.component'
     NewspageComponent,
     ToolshedBarComponent,
     MessagesComponent,
-    ChatComponent
+    ChatComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     AngularFontAwesomeModule,
     HttpClientModule,
+    FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
