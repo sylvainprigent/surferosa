@@ -11,7 +11,7 @@ export class AuthService {
 
     private authUrl = environment.baseUrl + '/api/v1/auth/';
 
-    public getToken(): string {
+    public getAuthToken(): string {
         return localStorage.getItem('access_token');
     }
 
@@ -35,7 +35,7 @@ export class AuthService {
             }));
     }
 
-    refresh() {
+    refreshToken() {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
